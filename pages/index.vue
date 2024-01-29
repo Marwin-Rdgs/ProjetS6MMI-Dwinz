@@ -1,4 +1,11 @@
 <template>
+
+    <div class="header">
+        <img src="../assets/icons/LogoComplet.svg" alt="Logo Dwinz" class="header__logo">
+        <h1 class="header__title">Refléter votre personnalité à travers un immense univers musicale</h1>
+        <img src="../assets/icons/settings.svg" alt="Icon to settings" class="header__settings">
+    </div>
+
     <main class="main">
         <button class="main__dislikeButton"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
         <Card class="main__card"/>
@@ -7,6 +14,65 @@
 </template>
 
 <style lang="scss" scoped>
+
+    .header {
+        background-color: #f8f7ff25;
+        
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        margin-bottom: 10%;
+
+        align-items: center;
+        justify-content: center;
+
+        &__logo {
+            width: 100%;
+            margin: 6%;
+
+            transition: all 0.3s ease;
+            transform: scale(100%);
+
+            @include x-large-up {
+                width: 50%;
+            }
+
+            &:hover {
+                transform: scale(110%);
+            }
+        }
+
+        &__title {
+            margin-left: auto;
+            margin-right: auto;
+            
+            text-align: center;
+            
+            font-family: $primary-font-family;
+            color: $d-white;
+
+            font-size: 14px;
+            @include x-large-up {
+                font-size: 24px;
+                width: 50%;
+            }
+        }
+
+        &__settings {
+            
+            @include x-large-up {
+                width: 15%;
+            }
+            margin-left: auto;
+            margin-right: auto;
+
+            transform: scale(100%);
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: scale(105%);
+            }
+        }
+    }
     .main {
         display: grid;
         justify-items: center;
