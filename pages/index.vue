@@ -26,21 +26,22 @@
             border-radius: 100%;
 
             border: none;
+            box-shadow: 3px 3px 3px $d-pinktonic;
 
             padding: 20px;
         }
 
          &__likeButton {
 
-            background-color: $d-pink;
+            background-color: $d-pinktonic;
 
             transition: all 0.3s ease;
 
             &:hover {
-                background-color: $d-pinktonic;
+                background-color: $d-pink;
                 transform: scale(1,10);
                 transform: translateX(10px);
-             }
+                }
         }
 
         &__dislikeButton {
