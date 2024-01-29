@@ -6,7 +6,6 @@
     </main>
 </template>
 
-
 <style lang="scss" scoped>
     .main {
         display: grid;
