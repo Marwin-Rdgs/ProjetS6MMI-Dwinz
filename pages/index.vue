@@ -1,8 +1,8 @@
 <template>
     <main class="main">
-        <button>Likes</button>
+        <button><img src="/assets/icons/check.svg" alt=""></button>
         <Card />
-        <button>Dislikes</button>
+        <button><img src="/assets/icons/cross.svg" alt=""></button>
     </main>
 </template>
 
