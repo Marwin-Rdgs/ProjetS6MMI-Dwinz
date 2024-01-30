@@ -8,15 +8,38 @@
 
     <main class="main">
         <button class="main__dislikeButton"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
-        <Card class="main__card"/>
+        <Card class="main__card" 
+        :music="musicexemple"/>
+        
         <button class="main__likeButton"><img src="/assets/icons/check.svg" alt="Button for Like"></button>
     </main>
 </template>
 
+<script>
+import Card from '../components/Card.vue';
+
+export default {
+  components: {
+    Card,
+  },
+  data() {
+    return {
+        musicexemple: {
+        title: 'Titre de la musique',
+        photo: 'https://media3.giphy.com/media/R7KRZAeVVphDy/giphy.gif',
+        author: 'Nom',
+        style: 'Rap',
+        // Ajoutez d'autres informations ici
+      },
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 
     .header {
-        background-color: #f8f7ff25;
+        background-color: $d-black;
         
         display: grid;
         grid-template-columns: 20% 60% 20%;
@@ -27,13 +50,13 @@
 
         &__logo {
             width: 100%;
-            margin: 6%;
+            margin: 12%;
 
             transition: all 0.3s ease;
             transform: scale(100%);
 
             @include x-large-up {
-                width: 50%;
+                width: 40%;
             }
 
             &:hover {
@@ -77,18 +100,22 @@
         display: grid;
         justify-items: center;
         align-items: center;
+        justify-content: center;
 
         grid-template-columns: 30% 30% 30%;
+        margin-left: 2%;
+        margin-right: 2%;
 
         &__card {
             grid-column: 100%;
 
-            @include x-large-up {
-                grid-column: 30%;
-            }
         }
 
         button {
+            margin-top: 450%;
+            @include x-large-up {
+                margin-top: 0%;
+            }
             border-radius: 100%;
 
             border: none;
