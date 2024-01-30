@@ -8,10 +8,32 @@
 
     <main class="main">
         <button class="main__dislikeButton"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
-        <Card class="main__card"/>
+        <Card class="main__card" 
+        :userData="user"/>
+        
         <button class="main__likeButton"><img src="/assets/icons/check.svg" alt="Button for Like"></button>
     </main>
 </template>
+
+<script>
+import Card from '../components/Card.vue';
+
+export default {
+  components: {
+    Card,
+  },
+  data() {
+    return {
+      user: {
+        name: 'Titre de la musique',
+        photo: 'https://media3.giphy.com/media/R7KRZAeVVphDy/giphy.gif',
+        bio: 'Nom',
+        // Ajoutez d'autres informations ici
+      },
+    };
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 
@@ -77,8 +99,11 @@
         display: grid;
         justify-items: center;
         align-items: center;
+        justify-content: center;
 
         grid-template-columns: 30% 30% 30%;
+        margin-left: 2%;
+        margin-right: 2%;
 
         &__card {
             grid-column: 100%;
