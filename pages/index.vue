@@ -9,7 +9,7 @@
     <main class="main">
         <button class="main__dislikeButton"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
         <Card class="main__card" 
-        :userData="user"/>
+        :music="musicexemple"/>
         
         <button class="main__likeButton"><img src="/assets/icons/check.svg" alt="Button for Like"></button>
     </main>
@@ -24,10 +24,11 @@ export default {
   },
   data() {
     return {
-      user: {
-        name: 'Titre de la musique',
+        musicexemple: {
+        title: 'Titre de la musique',
         photo: 'https://media3.giphy.com/media/R7KRZAeVVphDy/giphy.gif',
-        bio: 'Nom',
+        author: 'Nom',
+        style: 'Rap',
         // Ajoutez d'autres informations ici
       },
     };
@@ -38,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 
     .header {
-        background-color: #f8f7ff25;
+        background-color: $d-black;
         
         display: grid;
         grid-template-columns: 20% 60% 20%;
@@ -49,13 +50,13 @@ export default {
 
         &__logo {
             width: 100%;
-            margin: 6%;
+            margin: 12%;
 
             transition: all 0.3s ease;
             transform: scale(100%);
 
             @include x-large-up {
-                width: 50%;
+                width: 40%;
             }
 
             &:hover {

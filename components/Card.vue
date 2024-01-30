@@ -3,16 +3,16 @@
 <template>
     <div class="compact-card">
       <div class="compact-card-image">
-        <img :src="userData.photo" alt="User Photo">
+        <img :src="music.photo" alt="User Photo">
       </div>
       <div class="compact-card-content">
-        <h2>{{ userData.name }}</h2>
-        <p>Par {{ userData.bio }}</p>
+        <h2>{{ music.title }}</h2>
+        <p>Par {{ music.author }}</p>
         <!-- Ajoutez d'autres informations ici -->
         <hr />
         <section>
           <h3>Styles</h3>
-          <h4>Rap</h4>
+          <h4>{{ music.style }}</h4>
           <!-- Ajoutez d'autres styles ici -->
         </section>
         <hr />
@@ -24,7 +24,7 @@
   <script>
   export default {
     props: {
-      userData: {
+      music: {
         type: Object,
         required: true,
       },
@@ -39,7 +39,8 @@
     margin: 10px;
     border-radius: 8px;
     overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: $d-white;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
   
     &:hover {
