@@ -4,6 +4,7 @@
     <div class="compact-card">
       <div class="compact-card-image">
         <img :src="music.photo" alt="User Photo">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/18DQCUGYEvzGcCy50phQn7?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
       <div class="compact-card-content">
         <h2>{{ music.title }}</h2>
@@ -50,11 +51,27 @@
   
   .compact-card-image {
     img {
+        position: relative;
+        
       width: 100%;
       height: 150px;
       object-fit: cover;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
+    }
+
+    iframe {
+        display: none;
+        
+        position: absolute;
+
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+
+        bottom: 0;
+        height: 20%;
+        width: 100%;
     }
   }
   
