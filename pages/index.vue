@@ -109,12 +109,13 @@ export default {
         &__card {
             grid-column: 100%;
 
-            @include x-large-up {
-                grid-column: 30%;
-            }
         }
 
         button {
+            margin-top: 450%;
+            @include x-large-up {
+                margin-top: 0%;
+            }
             border-radius: 100%;
 
             border: none;
