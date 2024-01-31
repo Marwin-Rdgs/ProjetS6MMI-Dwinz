@@ -3,7 +3,7 @@
     <div class="header">
         <img src="../assets/icons/LogoComplet.svg" alt="Logo Dwinz" class="header__logo">
         <h1 class="header__title">Refléter votre personnalité à travers un immense univers musicale</h1>
-        <img src="../assets/icons/settings.svg" alt="Icon to settings" class="header__settings">
+        <img src="../assets/icons/profil.svg" alt="Icon to settings" class="header__settings">
     </div>
 
     <main class="main">
