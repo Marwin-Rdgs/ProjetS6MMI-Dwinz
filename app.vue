@@ -1,8 +1,9 @@
 <template>
-    <div id="DwinzBg"></div>
-    <NuxtPage />
+    <div id="DwinzBg">
+      <NuxtPage />
 
-    <Dwinz-Footer />
+      <Dwinz-Footer />
+    </div>
 </template>
 
 <script>
@@ -44,7 +45,6 @@ export default {
   position: absolute;
   z-index: -1;
   width: 100%;
-  height: 100%;
 }
 
 </style>
