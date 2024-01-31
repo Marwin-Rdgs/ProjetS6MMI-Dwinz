@@ -1,8 +1,9 @@
 <template>
-    <div id="DwinzBg"></div>
-    <NuxtPage />
+    <div id="DwinzBg">
+      <NuxtPage />
 
-    <Dwinz-Footer />
+      <Dwinz-Footer />
+    </div>
 </template>
 
 <script>
