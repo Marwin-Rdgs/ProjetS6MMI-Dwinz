@@ -46,8 +46,20 @@
 
             gap: 4%;
 
-            > p > a {
-                text-decoration: none;
+             > p { 
+                color: $d-white;
+                font-family: $secondary-font-family;
+                font-size: 16px;
+             
+                > a {
+                    color: $d-white;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                        font-weight: bold;
+                    }
+                }
             }
         }
 
