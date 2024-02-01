@@ -11,12 +11,23 @@
     <div class="profil__chart">
     <!-- ChartJS -->
         <h1>Votre Dwinz</h1>
+        <RadarChart />
     </div>    
 
 </template>
 
 <script setup>
+import RadarChart from '../../components/RadarChart.vue';
+
 const router = useRoute();
+
+// export default {
+//   components: {
+//     RadarChart,
+//   },
+//   // 
+// };
+
 </script>
 
 <style lang="scss" scoped>
