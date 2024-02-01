@@ -1,8 +1,8 @@
 <template>
     <div id="DwinzBg">
-      <NuxtPage />
 
-      <Dwinz-Footer />
+      <NuxtLayout />
+
     </div>
 </template>
 

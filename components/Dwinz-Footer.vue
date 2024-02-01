@@ -5,7 +5,7 @@
             <a href="#"><img src="../assets/icons/Tiktok.svg" alt="Icon for Tiktok" class="listicon_item"></a>
         </div>
         <div class="footer__legal">
-            <p><NuxtLink to="/legal"> Mentions Légales</NuxtLink> | <RouterLink to="legal">Politique de Confidentialité</RouterLink></p>
+            <p><NuxtLink to="/legal"> Mentions Légales</NuxtLink> | <NuxtLink to="/legal">Politique de Confidentialité</NuxtLink></p>
         </div>
     </footer>
 </template>
