@@ -1,8 +1,8 @@
 <template>
     <footer>
         <div class="listicon">
-            <a href="#" target="_blank"><img src="../assets/icons/Instagram.svg" alt="Icon for Instagram" class="listicon_item"></a>
-            <a href="#"><img src="../assets/icons/Tiktok.svg" alt="Icon for Tiktok" class="listicon_item"></a>
+            <a href="https://www.instagram.com/dwinz.off/" target="_blank"><img src="../assets/icons/Instagram.svg" alt="Icon for Instagram" class="listicon_item"></a>
+            <a href="https://www.tiktok.com/@.dwinz"><img src="../assets/icons/Tiktok.svg" alt="Icon for Tiktok" class="listicon_item"></a>
         </div>
         <div class="footer__legal">
             <p><NuxtLink to="/legal"> Mentions Légales</NuxtLink> | <NuxtLink to="/legal">Politique de Confidentialité</NuxtLink></p>
