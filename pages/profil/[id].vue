@@ -14,6 +14,7 @@
         <div class="profil__chart-content">
             <RadarChart />
         </div>
+        <h4>N'hésitez pas à partager votre <b>Dwinz</b> sur divers réseaux sociaux avec <b>#MyDwinz</b> !</h4>
     </div>    
 
 </template>
@@ -72,5 +73,19 @@ const router = useRoute();
         color: $d-white;
         font-family: $primary-font-family;
         font-size: 24px;
+    }
+
+    h4 {
+        color: $d-white;
+        font-family: $secondary-font-family;
+        font-size: 18px;
+        font-weight: normal;
+
+        text-align: center;
+        margin-top: 2%;
+
+        > b {
+            font-weight: bold;
+        }
     }
 </style>
