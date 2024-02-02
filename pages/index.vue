@@ -3,7 +3,7 @@
     <main class="main">
         <button class="main__dislikeButton"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
         <Card class="main__card" 
-        :music="musicexemple"/>
+        />
         
         <button class="main__likeButton"><img src="/assets/icons/check.svg" alt="Button for Like"></button>
     </main>
