@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  plugins: ['./plugins/driver.js'],
   css: ['./assets/scss/main.scss'],
   vite: {
     css: {
