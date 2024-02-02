@@ -27,27 +27,6 @@ export default {
       },
     };
   },
-  mounted() {
-    // Utilisez $nuxt.$driver au lieu de this.$driver
-    this.$nuxt.$driver.defineComponent([
-      {
-        element: '.main__card',
-        popover: {
-          title: 'Étape 1',
-          description: 'Ecouter la musique',
-        },
-      },
-      {
-        element: '.main',
-        popover: {
-          title: 'Étape 2',
-          description: 'Liker ou Disliker',
-        },
-      },
-    ])
-
-    this.$nuxt.$driver.start()
-  },
 };
 </script>
 
