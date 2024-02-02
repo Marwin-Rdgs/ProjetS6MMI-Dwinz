@@ -11,13 +11,16 @@
     <div class="profil__chart">
     <!-- ChartJS -->
         <h1>Votre Dwinz</h1>
-        <RadarChart />
+        <div class="profil__chart-content">
+            <RadarChart />
+        </div>
     </div>    
 
 </template>
 
 <script setup>
 import RadarChart from '../../components/RadarChart.vue';
+// import RadarChart from '../../components/chartTest.vue'
 
 const router = useRoute();
 
@@ -56,6 +59,12 @@ const router = useRoute();
         &__chart {
             margin-top: 10%;
             margin-left: 2%;
+
+            &-content {
+                display: flex; 
+                justify-content: center;
+                align-items: center
+            }
         }
     }
 
