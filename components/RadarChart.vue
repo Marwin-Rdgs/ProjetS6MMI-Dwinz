@@ -1,44 +1,63 @@
 <template>
     <div>
       <!-- <chart :type="'radar'" :data="chartData"></chart> -->
-      <canvas ref="RadarChart" :type="'radar'" width="400" height="400"></canvas>
+      <!-- <canvas ref="RadarChart" :type="" width="400" height="400"></canvas> -->
+      <Radar 
+      :options="chartOptions"
+      :data="chartData"
+      :chart-id="chartId"
+      :dataset-id-key="datasetIdKey"
+      :css-classes="cssClasses"
+      :styles="styles"
+      :width="width"
+      :height="height"/>
     </div>
   </template>
   
-  <script>
-  import { defineProps, reactive, ref, onMounted } from 'vue';
-  import { Chart } from 'chart.js/auto';
+  <script setup>
+  // import { defineProps, reactive, ref, onMounted } from 'vue';
+  // import { Chart } from 'chart.js/auto';
   import { Radar } from 'vue-chartjs';
-  import {Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale} from 'chart.js';
+  import {Chart as ChartJS, Title, Tooltip, Legend, PointElement, LineElement, RadialLinearScale, Filler} from 'chart.js';
   
 
-  ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
+  ChartJS.register(Title, Tooltip, Legend, PointElement, LineElement, RadialLinearScale, Filler)
 
   const propChart = defineProps({
     chartId: {type: String, default:'radar-chart'},
     datasetIdKey: {type: String, default:'label'},
-    width: {type: Number, default: 500},
-    height: {type: Number, default: 500},
+    width: {type: Number, default: 100},
+    height: {type: Number, default: 100},
     cssClasses: {type: String, default: ''},
     styles: {type: Object, default: () => {}},
     plugins: {type: Object, default: () => {}}
   })
 
-  const chartData = reactive({
+  let chartData = reactive({
     labels:['Rap', 'Pop', 'Rock', 'Tech'],
     datasets: [
         {
+            label: "Votre Dwinz",
             data: [4,1,0,6],
-            backgroundColor: ['blue', 'red', 'green', 'black'],
+            backgroundColor: ['pink'],
             borderColor: [],
-            borderWidth: 1
+            borderWidth: 2
         }
     ]
   })
 
-  const chartOptions = reactive({
+  let chartOptions = reactive({
     responsive: true,
-    maintainAspectRadar: false
+    scales: {
+      r: {
+        angleLines: {
+          display: true
+        },
+        suggestedMin: 0,
+        suggestedMax: 10
+      }
+    }
+    // maintainAspectRadar: false
   })
   
 //   export default {
@@ -68,5 +87,14 @@
   </script>
   
   <style scoped lang="scss">
-  // Ajoutez vos styles SCSS spécifiques au composant ici
+  * {
+    background-color: $d-white;
+    border-radius: 20%;
+    padding: 2%;
+    
+
+    @include x-large-up {
+      width: 20%;
+    }
+  }
   </style>
