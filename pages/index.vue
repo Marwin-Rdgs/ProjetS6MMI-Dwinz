@@ -12,7 +12,6 @@
 <script>
 import Card from '../components/Card.vue';
 
-
 export default {
   components: {
     Card,
@@ -27,6 +26,27 @@ export default {
         // Ajoutez d'autres informations ici
       },
     };
+  },
+  mounted() {
+    // Utilisez $nuxt.$driver au lieu de this.$driver
+    this.$nuxt.$driver.defineComponent([
+      {
+        element: '.main__card',
+        popover: {
+          title: 'Étape 1',
+          description: 'Ecouter la musique',
+        },
+      },
+      {
+        element: '.main',
+        popover: {
+          title: 'Étape 2',
+          description: 'Liker ou Disliker',
+        },
+      },
+    ])
+
+    this.$nuxt.$driver.start()
   },
 };
 </script>
