@@ -2,30 +2,23 @@
 
     <main class="main">
         <button class="main__dislikeButton"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
-        <Card class="main__card" 
-        :music="musicexemple"/>
-        
+        <Card class="main__card" :randomTrack="Math.floor(Math.random() * 10) + 1" />        
         <button class="main__likeButton"><img src="/assets/icons/check.svg" alt="Button for Like"></button>
     </main>
 </template>
 
 <script>
+// Rap : 1 | 5
+// Pop : 4 | 7
+// Rock : 2 | 6
+// Reggae : 3 | 10
+// Latino : 8 | 9
+
 import Card from '../components/Card.vue';
 
 export default {
   components: {
     Card,
-  },
-  data() {
-    return {
-        musicexemple: {
-        title: 'Titre de la musique',
-        photo: 'https://media3.giphy.com/media/R7KRZAeVVphDy/giphy.gif',
-        author: 'Nom',
-        style: 'Rap',
-        // Ajoutez d'autres informations ici
-      },
-    };
   },
 };
 </script>
