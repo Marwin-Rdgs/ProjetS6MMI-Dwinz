@@ -1,11 +1,12 @@
 <script setup>
 import { createClient } from '@supabase/supabase-js';
 import { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/SupabaseAuthClient';
-
+import {user} from '../supabase'
 import RadarChart from '../../components/RadarChart.vue';
 // import RadarChart from '../../components/chartTest.vue'
+console.log(user)
+// const router = useRouter();
 
-const router = useRoute();
 // export default {
 //   components: {
 //     RadarChart,
@@ -13,7 +14,17 @@ const router = useRoute();
 //   // 
 // };
 
+// const SUPABASE_URL = 'https://aglwlxinesjnvxdjfdqx.supabase.co'
+// const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnbHdseGluZXNqbnZ4ZGpmZHF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMTc2OTMsImV4cCI6MjAyMjY5MzY5M30.Xkfnez7lHZcwnMYNd8dIkoVJWq0nUCN2iNpPE19UlYA'
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// const user = ref()
+// supabase.auth.onAuthStateChange(async () => {
+//     const { data, error } = await supabase.auth.getSession()
+//     user.value = data.session.user
+// })
+
+
 </script>
 
 
@@ -24,7 +35,8 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
         <img src="../../assets/icons/profil.svg" alt="">
         <hr />
         <h1>Profil</h1>
-        <button @click="logout">Se déconnecter</button>
+        <!-- <button @click="logout">Se déconnecter</button> -->
+        <!-- <NuxtLink @click="logout" to="/">Se déconnecter</NuxtLink> -->
     </div>
     <!-- <button class="profil__edit">Modifier</button> -->
 
@@ -39,19 +51,23 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 </template>
 
 <script>
+import {useRouter} from 'vue-router'
 const SUPABASE_URL = 'https://aglwlxinesjnvxdjfdqx.supabase.co'
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnbHdseGluZXNqbnZ4ZGpmZHF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMTc2OTMsImV4cCI6MjAyMjY5MzY5M30.Xkfnez7lHZcwnMYNd8dIkoVJWq0nUCN2iNpPE19UlYA'
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
 export default {
+    setup(){
+        const router = useRouter();
+    },
     methods:{
         async logout(){ 
       try { 
-        const { user, session, error } = await supabase.auth.signOut(); 
-        if (error) throw error; 
+        const { user, session, error } = await supabase.auth.signOut();
+            if (error) throw error; 
         // document.getElementById('status').innerHTML='You are disconnected !' 
       } catch (error) { 
-        alert(error.error_description || error.message); 
+        // alert(error.error_description || error.message); 
       }  
     }, 
     }
