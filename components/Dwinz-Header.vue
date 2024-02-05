@@ -1,20 +1,74 @@
+<script setup>
+import { createClient } from '@supabase/supabase-js';
+import { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/SupabaseAuthClient';
+
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+  
+  supabase.auth.onAuthStateChange((event, session) => { 
+    if(session==null){ 
+      document.getElementById('status').innerHTML='You are not logged !!!'; 
+    } else{ 
+      //alert('session value: ' + JSON.stringify(session)) 
+      document.getElementById('status').innerHTML='You are logged with the email: ' + session.user.email; 
+    } 
+  
+  })
+</script>
+
 <template>
         <div class="header">
             <NuxtLink to="/"><img src="../assets/icons/LogoComplet.svg" alt="Logo Dwinz" class="header__logo"></NuxtLink>
             <h1 class="header__title">Refléter votre personnalité à travers un immense univers musicale</h1>
         <NuxtLink to="/profil/12"><img src="../assets/icons/profil.svg" alt="Icon to settings" class="header__settings"></NuxtLink>
-        <button @click="login">Se connecter avec Spotify</button>
+        <button @click="loginSpotify()">Se connecter avec Spotify</button>
     </div>
 </template>
 
 <script>
+const SUPABASE_URL = 'https://aglwlxinesjnvxdjfdqx.supabase.co'
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnbHdseGluZXNqbnZ4ZGpmZHF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMTc2OTMsImV4cCI6MjAyMjY5MzY5M30.Xkfnez7lHZcwnMYNd8dIkoVJWq0nUCN2iNpPE19UlYA'
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+
 export default {
-  methods: {
-    async login() {
-      await this.$auth.loginWith('spotify');
+    methods: {  
+       //this method allows to release the connexion with the Google account 
+async logout(){ 
+      try { 
+        const { user, session, error } = await supabase.auth.signOut(); 
+        if (error) throw error; 
+        document.getElementById('status').innerHTML='You are disconnected !' 
+      } catch (error) { 
+        alert(error.error_description || error.message); 
+      }  
+    }, 
+    //this method allows to log in the system using Google provider
+    async loginSpotify(){ 
+      try { 
+        const { user, session, error } = await supabase.auth.signInWithOAuth({ 
+          provider: 'spotify', 
+        }); 
+        if (error) throw error; 
+      } catch (error) { 
+        alert(error.error_description || error.message); 
+      }  
     },
-  },
-};
+    },
+    mounted() {
+        supabase.auth.onAuthStateChange(async (event, session) => {
+        if (event == 'PASSWORD_RECOVERY') {
+          const newPassword = prompt('What would you like your new password to be ?')
+          const { data,error } = await supabase.auth.update ({
+            password: newPassword,
+          })
+  
+          if (data) alert ('Password updated successfully')
+          if (error) alert ('There was an error updating your password')
+        }
+      })
+    }
+}
+
 </script>
 
 <style lang="scss">
