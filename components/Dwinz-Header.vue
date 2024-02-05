@@ -3,8 +3,19 @@
             <NuxtLink to="/"><img src="../assets/icons/LogoComplet.svg" alt="Logo Dwinz" class="header__logo"></NuxtLink>
             <h1 class="header__title">Refléter votre personnalité à travers un immense univers musicale</h1>
         <NuxtLink to="/profil/12"><img src="../assets/icons/profil.svg" alt="Icon to settings" class="header__settings"></NuxtLink>
+        <button @click="login">Se connecter avec Spotify</button>
     </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    async login() {
+      await this.$auth.loginWith('spotify');
+    },
+  },
+};
+</script>
 
 <style lang="scss">
     .header {

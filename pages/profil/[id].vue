@@ -5,6 +5,7 @@
         <img src="../../assets/icons/profil.svg" alt="">
         <hr />
         <h1>Profil</h1>
+        <button @click="logout">Se déconnecter</button>
     </div>
     <!-- <button class="profil__edit">Modifier</button> -->
 
@@ -18,12 +19,19 @@
 
 </template>
 
-<script setup>
+<script>
 import RadarChart from '../../components/RadarChart.vue';
 // import RadarChart from '../../components/chartTest.vue'
 
 const router = useRoute();
 
+export default {
+  methods: {
+    async logout() {
+      await this.$auth.logout();
+    },
+  },
+};
 // export default {
 //   components: {
 //     RadarChart,
