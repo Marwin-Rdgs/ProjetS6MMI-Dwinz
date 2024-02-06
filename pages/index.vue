@@ -1,14 +1,17 @@
 <template>
 
     <main class="main">
-        <button class="main__dislikeButton" @click="dislikeTrack"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
-        <Card class="main__card" :randomTrack="Randomizer" />        
-        <button class="main__likeButton" @click="likeTrack"><img src="/assets/icons/check.svg" alt="Button for Like"></button>
+        <button class="main__dislikeButton" @click="RandomizeTrack"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
+        <Card class="main__card" :randomTrack="Randomizer" />       
+        <form @submit.prevent="likeTrack"> 
+            <input type="hidden" >
+            <button type="submit" class="main__likeButton"><img src="/assets/icons/check.svg" alt="Button for Like"></button>
+        </form>
     </main>
 </template>
 
 <script>
-
+import {supabase} from '../supabase'
 import Card from '../components/Card.vue';
 
 export default {
@@ -21,15 +24,36 @@ export default {
         };
     },
     methods: {
-        likeTrack() {
-            //     // Appel Fonction => +1 au genre en question
+
+        async likeTrack(dataform) {
+          
+            //  +1 au Rap
+            console.log("Randomize est égal à ---- "+this.Randomizer);
+
             if (this.Randomizer == 1 || this.Randomizer == 5){
-                // +1 au RAP
+                // Récupérer les données / Envoies des données dans une variable / faire +1 / mettre dans le input type="hidden" / Renvoyer
+                const { data, error } = await supabase
+                .from('Profils')
+                .select('Likes_Rap');
+                
+
+                console.log('Profils ---- ',data);
+                // var likes = ref(Profils.Likes_Rap);
+                // likes++;
+
+                // const { data, error } = await supabase
+                // .from("Profils")
+                // .upsert(dataForm);
+                // console.log(Profils.Likes_Rap);
+                // console.log(dataForm);
+
+
+
             }
-            if (this.Randomizer == 4 || this.Randomizer == 7){
+           else if (this.Randomizer == 4 || this.Randomizer == 7){
                 // +1 au POP
             }
-            if (this.Randomizer == 2 || this.Randomizer == 6){
+           else if (this.Randomizer == 2 || this.Randomizer == 6){
                 // +1 au Rock
             }
             if (this.Randomizer == 3 || this.Randomizer == 10){
@@ -37,11 +61,13 @@ export default {
             }
             if (this.Randomizer == 8 || this.Randomizer == 9){
                 // +1 au Latino
-            }
-            this.Randomizer = Math.floor(Math.random() * 10) + 1;
-            console.log("Index.vue Track - " + this.Randomizer);
+            }  
+
+            this.RandomizeTrack();
         },
-        dislikeTrack() {
+
+         RandomizeTrack() {
+             // Appel Fonction => +1 au genre en question
             this.Randomizer = Math.floor(Math.random() * 10) + 1;
             console.log("Index.vue Track - " + this.Randomizer);
         },
