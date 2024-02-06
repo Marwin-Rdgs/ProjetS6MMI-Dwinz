@@ -118,12 +118,11 @@ async logout(){
         }
 
         &__settings {
-            
+
+          margin-left: 45%;            
             @include x-large-up {
                 width: 15%;
             }
-            margin-left: auto;
-            margin-right: auto;
 
             transform: scale(100%);
             transition: all 0.3s ease;
@@ -135,7 +134,7 @@ async logout(){
 
         &__profil {
 
-          display: grid;
+          // display: grid;
           
           &-connect {
             background-color: rgba(255, 0, 0, 0);
@@ -151,10 +150,13 @@ async logout(){
             @include x-large-up {
               font-size: 14px;
             }
+            
+            > span {
 
-            &:hover {
-              text-decoration: underline;
-              font-weight: bold;
+              &:hover {
+                text-decoration: underline;
+                font-weight: bold;
+              }
             }
             
           }
