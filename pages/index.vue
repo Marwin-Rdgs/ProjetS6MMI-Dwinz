@@ -25,46 +25,53 @@ export default {
     },
     methods: {
 
-        async likeTrack(dataform) {
-          
-            //  +1 au Rap
-            console.log("Randomize est égal à ---- "+this.Randomizer);
+        async likeTrack() {
+    // Identifier l'utilisateur actuel (remplacer 'userId' par l'ID de l'utilisateur)
+    
+    const userId = 'userId'; // Remplacer cela par la vraie méthode d'identification de l'utilisateur
 
-            if (this.Randomizer == 1 || this.Randomizer == 5){
-                // Récupérer les données / Envoies des données dans une variable / faire +1 / mettre dans le input type="hidden" / Renvoyer
-                const { data, error } = await supabase
-                .from('Profils')
-                .select('Likes_Rap');
-                
+    // Sélectionner les données de l'utilisateur actuel
+    const { data: userProfile, error } = await supabase
+        .from('Profils')
+        .select()
+        .eq('id', userId)
+        .single();
 
-                console.log('Profils ---- ',data);
-                // var likes = ref(Profils.Likes_Rap);
-                // likes++;
+    if (error) {
+        console.error('Erreur lors de la récupération du profil de l\'utilisateur:', error.message);
+        return;
+    }
 
-                // const { data, error } = await supabase
-                // .from("Profils")
-                // .upsert(dataForm);
-                // console.log(Profils.Likes_Rap);
-                // console.log(dataForm);
+    // Incrémenter le compteur approprié en fonction de la valeur de Randomizer
+    let genreToIncrement = '';
+    if (this.Randomizer == 1 || this.Randomizer == 5) {
+        genreToIncrement = 'Likes_Rap';
+    } else if (this.Randomizer == 4 || this.Randomizer == 7) {
+        genreToIncrement = 'Likes_Pop';
+    } else if (this.Randomizer == 2 || this.Randomizer == 6) {
+        genreToIncrement = 'Likes_Rock';
+    } else if (this.Randomizer == 3 || this.Randomizer == 10) {
+        genreToIncrement = 'Likes_Reggae';
+    } else if (this.Randomizer == 8 || this.Randomizer == 9) {
+        genreToIncrement = 'Likes_Latino';
+    }
 
+    // Incrémenter le compteur dans le profil de l'utilisateur
+    const updatedUserProfile = { ...userProfile };
+    updatedUserProfile[genreToIncrement] += 1;
 
+    // Mettre à jour ou insérer le profil de l'utilisateur dans la base de données
+    const { data: updatedProfileData, error: updateError } = await supabase
+        .from('Profils')
+        .upsert(updatedUserProfile);
 
-            }
-           else if (this.Randomizer == 4 || this.Randomizer == 7){
-                // +1 au POP
-            }
-           else if (this.Randomizer == 2 || this.Randomizer == 6){
-                // +1 au Rock
-            }
-            if (this.Randomizer == 3 || this.Randomizer == 10){
-                // +1 au Reggae
-            }
-            if (this.Randomizer == 8 || this.Randomizer == 9){
-                // +1 au Latino
-            }  
+    if (updateError) {
+        console.error('Erreur lors de la mise à jour du profil de l\'utilisateur:', updateError.message);
+        return;
+    }
 
-            this.RandomizeTrack();
-        },
+    console.log('Profil de l\'utilisateur mis à jour avec succès:', updatedProfileData);
+},
 
          RandomizeTrack() {
              // Appel Fonction => +1 au genre en question
