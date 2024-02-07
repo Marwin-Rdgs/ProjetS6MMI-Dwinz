@@ -40,16 +40,33 @@ const likeTrack = async (dataForm) => {
     console.log(dataForm)
   if (Randomizer.value === 1 || Randomizer.value === 5) {
     // console.log("qighegjgng")
-    console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Rap").single())
+    // console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Rap").single())
     // console.log("2")
-    const { data:like_rap, error } = await supabase.from("LikesDwinz").select("Likes_Rap").single();
+    const { data:likes, error } = await supabase.from("LikesDwinz").select("Likes_Rap, Likes_Pop, Likes_Rock, Likes_Latino, Likes_Reggae").single();
     // console.log(data.Likes_Rap);
-    LikeRap.value = like_rap.Likes_Rap;
-    LikeRap.value++
-    dataForm.Likes_Rap = LikeRap.value;
+    
+    if (likes) {
+        console.log("LIIIIIKES RAAAP --- "+likes);
+        LikeRap.value = likes.Likes_Rap;
+        LikeRap.value++
+        dataForm.Likes_Rap = LikeRap.value;
+        dataForm.Likes_Pop = likes.Likes_Pop;
+        dataForm.Likes_Reggae = likes.Likes_Reggae;
+        dataForm.Likes_Rock = likes.Likes_Rock;
+        dataForm.Likes_Latino = likes.Likes_Latino;
+    } else {
+        dataForm.Likes_Rap = 1;
+        dataForm.Likes_Pop = 0;
+        dataForm.Likes_Reggae = 0;
+        dataForm.Likes_Rock = 0;
+        dataForm.Likes_Latino = 0;
+    }
+
     console.log("Rap :", dataForm);
 
-    const { data, error: updateError } = await supabase.from("LikesDwinz").upsert({ Likes_Rap: LikeRap.value });
+    const { data, error: updateError } = await supabase.from("LikesDwinz").upsert(dataForm);
+
+    RandomizeTrack();
 
     // Like.value++;
     // const { data , error } = await supabase.from('LikesDwinz').select("Likes_Rap").upsert(Like.value);
@@ -58,63 +75,127 @@ const likeTrack = async (dataForm) => {
 
   } else if (Randomizer.value === 4 || Randomizer.value === 7) {
     // Logique pour le cas Randomizer === 4 ou 7
-    console.log("qighegjgng")
-        console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Pop").single())
-        console.log("2")
+        // console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Pop").single())
 
-    const { data:like_pop, error } = await supabase.from("LikesDwinz").select("Likes_Pop").single();
+        const { data:likes, error } = await supabase.from("LikesDwinz").select("Likes_Rap, Likes_Pop, Likes_Rock, Likes_Latino, Likes_Reggae").single();
+    // console.log(data.Likes_Rap);
+    
+    if (likes) {
+        console.log("LIIIIIKES POOOP --- "+likes);
+        LikePop.value = likes.Likes_Pop;
+        LikePop.value++
+        dataForm.Likes_Rap = likes.Likes_Rap;
+        dataForm.Likes_Pop = LikePop.value;
+        dataForm.Likes_Reggae = likes.Likes_Reggae;
+        dataForm.Likes_Rock = likes.Likes_Rock;
+        dataForm.Likes_Latino = likes.Likes_Latino;
+        console.log("Pop :", dataForm);
+    } else {
+        dataForm.Likes_Rap = 0;
+        dataForm.Likes_Pop = 1;
+        dataForm.Likes_Reggae = 0;
+        dataForm.Likes_Rock = 0;
+        dataForm.Likes_Latino = 0;
+    }
 
-    LikePop.value = like_pop.Likes_Pop;
-    LikePop.value++
-    dataForm.Likes_Rap = LikePop.value;
-    console.log("Pop :", dataForm);
+    const { data, error: updateError } = await supabase.from("LikesDwinz").upsert(dataForm);
+
+    RandomizeTrack();
 
 
 
   } else if (Randomizer.value === 2 || Randomizer.value === 6) {
     // Logique pour le cas Randomizer === 2 ou 6
-    console.log("qighegjgng")
-        console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Rock").single())
-        console.log("2")
+        // console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Rock").single())
 
-    const { data:like_rock, error } = await supabase.from("LikesDwinz").select("Likes_Rock").single();
 
-    LikeRock.value = like_rock.Likes_Rock;
-    LikeRock.value++
-    dataForm.Likes_Rap = LikeRock.value;
-    console.log("Rock :",dataForm);
+        const { data:likes, error } = await supabase.from("LikesDwinz").select("Likes_Rap, Likes_Pop, Likes_Rock, Likes_Latino, Likes_Reggae").single();
+    // console.log(data.Likes_Rap);
+    
+    if (likes) {
+        console.log("LIIIIIKES ROOOCK --- "+likes);
+        LikeRock.value = likes.Likes_Rock;
+        LikeRock.value++
+        dataForm.Likes_Rap = likes.Likes_Rap;
+        dataForm.Likes_Pop = likes.Likes_Pop;
+        dataForm.Likes_Reggae = likes.Likes_Reggae;
+        dataForm.Likes_Rock = LikeRock.value;
+        dataForm.Likes_Latino = likes.Likes_Latino;
+        console.log("Rock :", dataForm);
+    } else {
+        dataForm.Likes_Rap = 0;
+        dataForm.Likes_Pop = 0;
+        dataForm.Likes_Reggae = 0;
+        dataForm.Likes_Rock = 1;
+        dataForm.Likes_Latino = 0;
+    }
+
+    const { data, error: updateError } = await supabase.from("LikesDwinz").upsert(dataForm);
+
+    RandomizeTrack();
 
 
 
   } else if (Randomizer.value === 3 || Randomizer.value === 10) {
     // Logique pour le cas Randomizer === 3 ou 10
-        console.log("qighegjgng")
-        console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Reggae").single())
-        console.log("2")
+        // console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Reggae").single())
 
-    const { data:like_reggae, error } = await supabase.from("LikesDwinz").select("Likes_Reggae").single();
+        const { data:likes, error } = await supabase.from("LikesDwinz").select("Likes_Rap, Likes_Pop, Likes_Rock, Likes_Latino, Likes_Reggae").single();
+        // console.log(data.Likes_Rap);
+        
+        if (likes) {
+        console.log("LIIIIIKES REGGAE--- "+likes);
+        LikeReggae.value = likes.Likes_Reggae;
+        LikeReggae.value++
+        dataForm.Likes_Rap = likes.Likes_Rap;
+        dataForm.Likes_Pop = likes.Likes_Pop;
+        dataForm.Likes_Reggae = LikeReggae.value;
+        dataForm.Likes_Rock = likes.Likes_Rock;
+        dataForm.Likes_Latino = likes.Likes_Latino;
+        console.log("Reggae :", dataForm);
+    } else {
+        dataForm.Likes_Rap = 0;
+        dataForm.Likes_Pop = 0;
+        dataForm.Likes_Reggae = 1;
+        dataForm.Likes_Rock = 0;
+        dataForm.Likes_Latino = 0;
+    }
 
-    LikeReggae.value = like_reggae.Likes_Reggae;
-    LikeReggae.value++
-    dataForm.Likes_Rap = LikeReggae.value;
-    console.log("Reggae :", dataForm);
+    const { data, error: updateError } = await supabase.from("LikesDwinz").upsert(dataForm);
+
+    RandomizeTrack();
 
 
   } else if (Randomizer.value === 8 || Randomizer.value === 9) {
     // Logique pour le cas Randomizer === 8 ou 9
-    console.log("qighegjgng")
-        console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Latino").single())
-        console.log("2")
+        // console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Latino").single())
 
-    const { data:like_latino, error } = await supabase.from("LikesDwinz").select("Likes_Latino").single();
+        const { data:likes, error } = await supabase.from("LikesDwinz").select("Likes_Rap, Likes_Pop, Likes_Rock, Likes_Latino, Likes_Reggae").single();
+    // console.log(data.Likes_Rap);
+    
+    if (likes) {
+        console.log("LIIIIIKES LATINNO --- "+likes);
+        LikeLatino.value = likes.Likes_Latino;
+        LikeLatino.value++
+        dataForm.Likes_Rap = likes.Likes_Rap;
+        dataForm.Likes_Pop = likes.Likes_Pop;
+        dataForm.Likes_Reggae = likes.Likes_Reggae;
+        dataForm.Likes_Rock = likes.Likes_Rock;
+        dataForm.Likes_Latino = LikeLatino.value;
+    } else {
+        dataForm.Likes_Rap = 0;
+        dataForm.Likes_Pop = 0;
+        dataForm.Likes_Reggae = 0;
+        dataForm.Likes_Rock = 0;
+        dataForm.Likes_Latino = 1;
+    }
+    // console.log("Latino :", dataForm);
 
-    LikeLatino.value = like_latino.Likes_Latino;
-    LikeLatino.value++
-    dataForm.Likes_Rap = LikeLatino.value;
-    console.log("Latino :", dataForm);
+    const { data, error: updateError } = await supabase.from("LikesDwinz").upsert(dataForm);
+
+    RandomizeTrack();
   }
-
-  RandomizeTrack();
+//   RandomizeTrack();
 };
 
 // const upsertData = async (dataForm) => {
@@ -137,6 +218,7 @@ const RandomizeTrack = () => {
         <Card class="main__card" :randomTrack="Randomizer" />       
         <!-- <input type="text" :value="LikeRap"> -->
         <FormKit type="form" @submit="likeTrack" v-model="dataForm"> 
+            <FormKit type="hidden" name="id_profil" />
             <FormKit type="hidden" name="Likes_Reggae" />
             <FormKit type="hidden" name="Likes_Rap"/>
             <FormKit type="hidden" name="Likes_Rock" />

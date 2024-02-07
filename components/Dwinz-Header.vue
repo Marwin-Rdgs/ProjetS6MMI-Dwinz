@@ -21,7 +21,7 @@ import {user} from '../supabase'
             <NuxtLink to="/"><img src="../assets/icons/LogoComplet.svg" alt="Logo Dwinz" class="header__logo"></NuxtLink>
             <h1 class="header__title">Refléter votre personnalité à travers un immense univers musical</h1>
             <div class="header__profil">
-              <NuxtLink to="/profil/12"><img src="../assets/icons/profil.svg" alt="Icon to settings" class="header__settings"></NuxtLink>
+              <NuxtLink to="/profil"><img src="../assets/icons/profil.svg" alt="Icon to settings" class="header__settings"></NuxtLink>
               <p class="header__profil-connect"><span @click="loginSpotify()">Connexion</span> / <span @click="logout">Déconnexion</span></p>
             </div>
     </div>

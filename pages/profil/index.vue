@@ -34,7 +34,6 @@ console.log(user)
     <div class="profil__head">
         <img src="../../assets/icons/profil.svg" alt="">
         <hr />
-        <h1>Votre Nom</h1>
         <!-- <button @click="logout">Se déconnecter</button> -->
         <!-- <NuxtLink @click="logout" to="/">Se déconnecter</NuxtLink> -->
     </div>
