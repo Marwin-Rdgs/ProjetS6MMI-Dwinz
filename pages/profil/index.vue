@@ -23,15 +23,20 @@ console.log(user)
 //     const { data, error } = await supabase.auth.getSession()
 //     user.value = data.session.user
 // })
+const Likes_Rap = ref();
+const Likes_Latino = ref();
+const Likes_Rock = ref();
+const Likes_Pop = ref();
+const Likes_Reggae = ref();
 
 onMounted(async() => {
 const { data, error } = await supabase.from("LikesDwinz").select("*").single();
 
-const Likes_Rap = data.Likes_Rap;
-const Likes_Latino = data.Likes_Latino;
-const Likes_Rock = data.Likes_Rock;
-const Likes_Pop = data.Likes_Pop;
-const Likes_Reggae = data.Likes_Reggae; 
+    Likes_Rap.value = data.Likes_Rap;
+    Likes_Latino.value = data.Likes_Latino;
+    Likes_Rock.value = data.Likes_Rock;
+    Likes_Pop.value = data.Likes_Pop;
+    Likes_Reggae.value = data.Likes_Reggae; 
 })
 
 
