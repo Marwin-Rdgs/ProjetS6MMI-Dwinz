@@ -1,17 +1,155 @@
+<script setup>
+// import { ref, onMounted } from 'vue';
+import { createClient } from '@supabase/supabase-js';
+import { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/SupabaseAuthClient';
+import {user} from '../supabase'
+
+const SUPABASE_URL = 'https://nmblwsaflcsvzrwfkybl.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5tYmx3c2FmbGNzdnpyd2ZreWJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQyNDE0NDYsImV4cCI6MTk4OTgxNzQ0Nn0.kUNnwOb667kh1RG0YNFBMCDubpEjaE_2EyhAuPEtMhY';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const Randomizer = ref(Math.floor(Math.random() * 10) + 1);
+
+const LikeRap = ref();
+const LikeRock = ref();
+const LikeReggae = ref();
+const LikePop = ref();
+const LikeLatino = ref();
+// Like.value = 10;
+// console.log("Like= ====== " + Like.value);
+
+
+// async function upsertData(dataForm) {
+//     const { data, error } = await supabase
+//     .from("Profils")
+//     .upsert(dataForm);
+    
+//     console.log(Profils.Likes_Rap);
+//     console.log(dataForm);
+// }
+
+onMounted(async() => {
+    // const { data:like_rap, error } = await supabase.from("LikesDwinz").select("Likes_Rap").single();
+    // console.log(like_rap.Likes_Rap)
+    // LikeRap.value = like_rap.Likes_Rap
+  // Code à exécuter après le montage du composant
+  // Par exemple, this.$refs.input.focus() peut être déplacé ici
+});
+
+const likeTrack = async (dataForm) => {
+    console.log(dataForm)
+  if (Randomizer.value === 1 || Randomizer.value === 5) {
+    console.log("qighegjgng")
+    console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Rap").single())
+    console.log("2")
+    const { data:like_rap, error } = await supabase.from("LikesDwinz").select("Likes_Rap").single();
+    // console.log(data.Likes_Rap);
+    LikeRap.value = like_rap.Likes_Rap;
+    LikeRap.value++
+    dataForm.Likes_Rap = LikeRap.value;
+    console.log("Rap :", dataForm);
+
+    // Like.value++;
+    // const { data , error } = await supabase.from('LikesDwinz').select("Likes_Rap").upsert(Like.value);
+    // await upsertData(dataForm);
+
+
+  } else if (Randomizer.value === 4 || Randomizer.value === 7) {
+    // Logique pour le cas Randomizer === 4 ou 7
+    console.log("qighegjgng")
+        console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Pop").single())
+        console.log("2")
+
+    const { data:like_pop, error } = await supabase.from("LikesDwinz").select("Likes_Pop").single();
+
+    LikePop.value = like_pop.Likes_Pop;
+    LikePop.value++
+    dataForm.Likes_Rap = LikePop.value;
+    console.log("Pop :", dataForm);
+
+
+  } else if (Randomizer.value === 2 || Randomizer.value === 6) {
+    // Logique pour le cas Randomizer === 2 ou 6
+    console.log("qighegjgng")
+        console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Rock").single())
+        console.log("2")
+
+    const { data:like_rock, error } = await supabase.from("LikesDwinz").select("Likes_Rock").single();
+
+    LikeRock.value = like_rock.Likes_Rock;
+    LikeRock.value++
+    dataForm.Likes_Rap = LikeRock.value;
+    console.log("Rock :",dataForm);
+
+
+
+  } else if (Randomizer.value === 3 || Randomizer.value === 10) {
+    // Logique pour le cas Randomizer === 3 ou 10
+        console.log("qighegjgng")
+        console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Reggae").single())
+        console.log("2")
+
+    const { data:like_reggae, error } = await supabase.from("LikesDwinz").select("Likes_Reggae").single();
+
+    LikeReggae.value = like_reggae.Likes_Reggae;
+    LikeReggae.value++
+    dataForm.Likes_Rap = LikeReggae.value;
+    console.log("Reggae :", dataForm);
+
+
+  } else if (Randomizer.value === 8 || Randomizer.value === 9) {
+    // Logique pour le cas Randomizer === 8 ou 9
+    console.log("qighegjgng")
+        console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Latino").single())
+        console.log("2")
+
+    const { data:like_latino, error } = await supabase.from("LikesDwinz").select("Likes_Latino").single();
+
+    LikeLatino.value = like_latino.Likes_Latino;
+    LikeLatino.value++
+    dataForm.Likes_Rap = LikeLatino.value;
+    console.log("Latino :", dataForm);
+  }
+
+  RandomizeTrack();
+};
+
+// const upsertData = async (dataForm) => {
+//   const { data, error } = await supabase.from("LikesDwinz").select("Likes_Rap").single();
+//   // Logique pour l'upsert des données
+// };
+
+const RandomizeTrack = () => {
+  Randomizer.value = Math.floor(Math.random() * 10) + 1;
+};
+
+
+
+</script>
+
 <template>
 
     <main class="main">
         <button class="main__dislikeButton" @click="RandomizeTrack"><img src="/assets/icons/cross.svg" alt="Button for Dislike"></button>
         <Card class="main__card" :randomTrack="Randomizer" />       
-        <form @submit.prevent="likeTrack"> 
-            <input type="hidden" >
+        <!-- <input type="text" :value="LikeRap"> -->
+        <FormKit type="form" @submit="likeTrack" v-model="dataForm"> 
+            <FormKit type="hidden" name="Likes_Reggae" />
+            <FormKit type="hidden" name="Likes_Rap"/>
+            <FormKit type="hidden" name="Likes_Rock" />
+            <FormKit type="hidden" name="Likes_Latino"/>
+            <FormKit type="hidden" name="Likes_Pop" />
             <button type="submit" class="main__likeButton"><img src="/assets/icons/check.svg" alt="Button for Like"></button>
-        </form>
+        </FormKit>
     </main>
 </template>
 
-<script>
-import {supabase} from '../supabase'
+
+<!-- const SUPABASE_URL = 'https://nmblwsaflcsvzrwfkybl.supabase.co'
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5tYmx3c2FmbGNzdnpyd2ZreWJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQyNDE0NDYsImV4cCI6MTk4OTgxNzQ0Nn0.kUNnwOb667kh1RG0YNFBMCDubpEjaE_2EyhAuPEtMhY'
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+
+// import {supabase} from '../supabase.js'
 import Card from '../components/Card.vue';
 
 export default {
@@ -21,57 +159,64 @@ export default {
   data() {
         return {
             Randomizer: Math.floor(Math.random() * 10) + 1,
+            data: [],
         };
     },
+    mounted() {
+        this.$refs.input.focus();
+    },
+    setup(){
+        
+    },
     methods: {
+        async likeTrack(dataForm) {
+          
+            //  +1 au Rap
+            console.log("Randomize est égal à ---- "+this.Randomizer);
 
-        async likeTrack() {
-    // Identifier l'utilisateur actuel (remplacer 'userId' par l'ID de l'utilisateur)
-    
-    const userId = 'userId'; // Remplacer cela par la vraie méthode d'identification de l'utilisateur
+            if (this.Randomizer == 1 || this.Randomizer == 5){
+                // Récupérer les données / Envoies des données dans une variable / faire +1 / mettre dans le input type="hidden" / Renvoyer
+                const { data, error } = await supabase.from("LikesDwinz").select("Likes_Rap").single();
+                // const { data , error } = await supabase.from('LikesDwinz').upsert(dataForm.Likes_Rap++);
+                
+                console.log('Profils ---- ',data.Likes_Rap);
+                
+                console.log("mounted ====== " + this.$refs.like.type)
 
-    // Sélectionner les données de l'utilisateur actuel
-    const { data: userProfile, error } = await supabase
-        .from('Profils')
-        .select()
-        .eq('id', userId)
-        .single();
+                console.log(dataForm);
+                this.upsertData(dataForm);
+                // const likes = ref();
+                // const likes = this.$refs.input.value;
+                // console.log("dfsfsdfdsgdsgsdg -- "+likes)
 
-    if (error) {
-        console.error('Erreur lors de la récupération du profil de l\'utilisateur:', error.message);
-        return;
-    }
+                // likes.value = data.Likes_Rap;
+                // likes.value++;
 
-    // Incrémenter le compteur approprié en fonction de la valeur de Randomizer
-    let genreToIncrement = '';
-    if (this.Randomizer == 1 || this.Randomizer == 5) {
-        genreToIncrement = 'Likes_Rap';
-    } else if (this.Randomizer == 4 || this.Randomizer == 7) {
-        genreToIncrement = 'Likes_Pop';
-    } else if (this.Randomizer == 2 || this.Randomizer == 6) {
-        genreToIncrement = 'Likes_Rock';
-    } else if (this.Randomizer == 3 || this.Randomizer == 10) {
-        genreToIncrement = 'Likes_Reggae';
-    } else if (this.Randomizer == 8 || this.Randomizer == 9) {
-        genreToIncrement = 'Likes_Latino';
-    }
+                // this.$refs.input
 
-    // Incrémenter le compteur dans le profil de l'utilisateur
-    const updatedUserProfile = { ...userProfile };
-    updatedUserProfile[genreToIncrement] += 1;
+                // const { data, error } = await supabase
+                // .from("Profils")
+                // .upsert(dataForm);
+                // console.log(Profils.Likes_Rap);
+                // console.log(dataForm);
 
-    // Mettre à jour ou insérer le profil de l'utilisateur dans la base de données
-    const { data: updatedProfileData, error: updateError } = await supabase
-        .from('Profils')
-        .upsert(updatedUserProfile);
+            }
+           else if (this.Randomizer == 4 || this.Randomizer == 7){
+                // +1 au POP
+            }
+           else if (this.Randomizer == 2 || this.Randomizer == 6){
+                // +1 au Rock
+            }
+            if (this.Randomizer == 3 || this.Randomizer == 10){
+                // +1 au Reggae
+            }
+            if (this.Randomizer == 8 || this.Randomizer == 9){
+                // +1 au Latino
+            }  
 
-    if (updateError) {
-        console.error('Erreur lors de la mise à jour du profil de l\'utilisateur:', updateError.message);
-        return;
-    }
+            this.RandomizeTrack();
+        },
 
-    console.log('Profil de l\'utilisateur mis à jour avec succès:', updatedProfileData);
-},
 
          RandomizeTrack() {
              // Appel Fonction => +1 au genre en question
@@ -115,12 +260,20 @@ export default {
 
 // function DislikeTrack() {
 //     Randomizer = Math.floor(Math.random() * 10) + 1;
-// }
+// } -->
 
+<style lang="scss">
+    .formkit-wrapper {
 
-</script>
+    > button {
+        display: none ;
+    }
+}
+</style>
+
 
 <style lang="scss" scoped>
+
     .main {
         display: grid;
         justify-items: center;
@@ -130,6 +283,8 @@ export default {
         grid-template-columns: 30% 30% 30%;
         margin-left: 2%;
         margin-right: 2%;
+
+        
 
         &__card {
             grid-column: 100%;

@@ -16,7 +16,7 @@ console.log(user)
 
 // const SUPABASE_URL = 'https://aglwlxinesjnvxdjfdqx.supabase.co'
 // const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnbHdseGluZXNqbnZ4ZGpmZHF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMTc2OTMsImV4cCI6MjAyMjY5MzY5M30.Xkfnez7lHZcwnMYNd8dIkoVJWq0nUCN2iNpPE19UlYA'
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+// const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // const user = ref()
 // supabase.auth.onAuthStateChange(async () => {
@@ -34,7 +34,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     <div class="profil__head">
         <img src="../../assets/icons/profil.svg" alt="">
         <hr />
-        <h1>exemple@gmail.com</h1>
+        <h1>Votre Nom</h1>
         <!-- <button @click="logout">Se déconnecter</button> -->
         <!-- <NuxtLink @click="logout" to="/">Se déconnecter</NuxtLink> -->
     </div>
@@ -44,7 +44,12 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     <!-- ChartJS -->
         <h1>Votre Dwinz</h1>
         <div class="profil__chart-content">
-            <RadarChart />
+            <RadarChart 
+            :data_Rap="Likes_Rap"
+            :data_Rock="Likes_Rock"
+            :data_Latino="Likes_Latino"
+            :data_Pop="Likes_Pop"
+            :data_Reggae="Likes_Reggae"/>
         </div>
     </div>    
 
@@ -52,25 +57,29 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 <script>
 import {useRouter} from 'vue-router'
-const SUPABASE_URL = 'https://aglwlxinesjnvxdjfdqx.supabase.co'
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnbHdseGluZXNqbnZ4ZGpmZHF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMTc2OTMsImV4cCI6MjAyMjY5MzY5M30.Xkfnez7lHZcwnMYNd8dIkoVJWq0nUCN2iNpPE19UlYA'
+const SUPABASE_URL = 'https://nmblwsaflcsvzrwfkybl.supabase.co'
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5tYmx3c2FmbGNzdnpyd2ZreWJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQyNDE0NDYsImV4cCI6MTk4OTgxNzQ0Nn0.kUNnwOb667kh1RG0YNFBMCDubpEjaE_2EyhAuPEtMhY'
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+
+const { data, error } = await supabase.from("LikesDwinz").select("*").single();
+
+const Likes_Rap = data.Likes_Rap;
+const Likes_Latino = data.Likes_Latino;
+const Likes_Rock = data.Likes_Rock;
+const Likes_Pop = data.Likes_Pop;
+const Likes_Reggae = data.Likes_Reggae; 
+
+// console.log(data);
 
 export default {
     setup(){
         const router = useRouter();
     },
-    methods:{
-        async logout(){ 
-      try { 
-        const { user, session, error } = await supabase.auth.signOut();
-            if (error) throw error; 
-        // document.getElementById('status').innerHTML='You are disconnected !' 
-      } catch (error) { 
-        // alert(error.error_description || error.message); 
-      }  
-    }, 
-    }
+    data() {
+        return {
+            data: [],
+        };
+    },
 }
 
 </script>

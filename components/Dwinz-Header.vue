@@ -19,7 +19,7 @@ import {user} from '../supabase'
 <template>
         <div class="header">
             <NuxtLink to="/"><img src="../assets/icons/LogoComplet.svg" alt="Logo Dwinz" class="header__logo"></NuxtLink>
-            <h1 class="header__title">Refléter votre personnalité à travers un immense univers musicale</h1>
+            <h1 class="header__title">Refléter votre personnalité à travers un immense univers musical</h1>
             <div class="header__profil">
               <NuxtLink to="/profil/12"><img src="../assets/icons/profil.svg" alt="Icon to settings" class="header__settings"></NuxtLink>
               <p class="header__profil-connect"><span @click="loginSpotify()">Connexion</span> / <span @click="logout">Déconnexion</span></p>
@@ -29,8 +29,8 @@ import {user} from '../supabase'
 
 <script>
 import { createClient } from '@supabase/supabase-js';
-const SUPABASE_URL = 'https://aglwlxinesjnvxdjfdqx.supabase.co'
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnbHdseGluZXNqbnZ4ZGpmZHF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxMTc2OTMsImV4cCI6MjAyMjY5MzY5M30.Xkfnez7lHZcwnMYNd8dIkoVJWq0nUCN2iNpPE19UlYA'
+const SUPABASE_URL = 'https://nmblwsaflcsvzrwfkybl.supabase.co'
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5tYmx3c2FmbGNzdnpyd2ZreWJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQyNDE0NDYsImV4cCI6MTk4OTgxNzQ0Nn0.kUNnwOb667kh1RG0YNFBMCDubpEjaE_2EyhAuPEtMhY'
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
 export default {
