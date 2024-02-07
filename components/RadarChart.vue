@@ -16,24 +16,19 @@ const propChart = defineProps({
   plugins: {type: Object, default: () => {}},
 
   data_Rock: {
-      type: Number,
-      required: true,
+      type: String,
     },
     data_Rap: {
-      type: Number,
-      required: true,
+      type: String,
     },
     data_Pop: {
-      type: Number,
-      required: true,
+      type: String,
     },
     data_Reggae: {
-      type: Number,
-      required: true,
+      type: String,
     },
     data_Latino: {
-      type: Number,
-      required: true,
+      type: String,
     }
 })
 
