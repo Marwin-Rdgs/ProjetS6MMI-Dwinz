@@ -28,7 +28,7 @@ const LikeLatino = ref();
 //     console.log(dataForm);
 // }
 
-onMounted(async() => {
+onMounted(() => {
     // const { data:like_rap, error } = await supabase.from("LikesDwinz").select("Likes_Rap").single();
     // console.log(like_rap.Likes_Rap)
     // LikeRap.value = like_rap.Likes_Rap

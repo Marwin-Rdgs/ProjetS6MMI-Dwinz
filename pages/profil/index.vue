@@ -24,6 +24,16 @@ console.log(user)
 //     user.value = data.session.user
 // })
 
+onMounted(async() => {
+const { data, error } = await supabase.from("LikesDwinz").select("*").single();
+
+const Likes_Rap = data.Likes_Rap;
+const Likes_Latino = data.Likes_Latino;
+const Likes_Rock = data.Likes_Rock;
+const Likes_Pop = data.Likes_Pop;
+const Likes_Reggae = data.Likes_Reggae; 
+})
+
 
 </script>
 
@@ -60,13 +70,7 @@ const SUPABASE_URL = 'https://nmblwsaflcsvzrwfkybl.supabase.co'
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5tYmx3c2FmbGNzdnpyd2ZreWJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQyNDE0NDYsImV4cCI6MTk4OTgxNzQ0Nn0.kUNnwOb667kh1RG0YNFBMCDubpEjaE_2EyhAuPEtMhY'
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
-const { data, error } = await supabase.from("LikesDwinz").select("*").single();
 
-const Likes_Rap = data.Likes_Rap;
-const Likes_Latino = data.Likes_Latino;
-const Likes_Rock = data.Likes_Rock;
-const Likes_Pop = data.Likes_Pop;
-const Likes_Reggae = data.Likes_Reggae; 
 
 // console.log(data);
 
