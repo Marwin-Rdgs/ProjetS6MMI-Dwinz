@@ -39,15 +39,17 @@ onMounted(async() => {
 const likeTrack = async (dataForm) => {
     console.log(dataForm)
   if (Randomizer.value === 1 || Randomizer.value === 5) {
-    console.log("qighegjgng")
+    // console.log("qighegjgng")
     console.log("qighegjgng,", await supabase.from("LikesDwinz").select("Likes_Rap").single())
-    console.log("2")
+    // console.log("2")
     const { data:like_rap, error } = await supabase.from("LikesDwinz").select("Likes_Rap").single();
     // console.log(data.Likes_Rap);
     LikeRap.value = like_rap.Likes_Rap;
     LikeRap.value++
     dataForm.Likes_Rap = LikeRap.value;
     console.log("Rap :", dataForm);
+
+    const { data, error: updateError } = await supabase.from("LikesDwinz").upsert({ Likes_Rap: LikeRap.value });
 
     // Like.value++;
     // const { data , error } = await supabase.from('LikesDwinz').select("Likes_Rap").upsert(Like.value);
@@ -66,6 +68,7 @@ const likeTrack = async (dataForm) => {
     LikePop.value++
     dataForm.Likes_Rap = LikePop.value;
     console.log("Pop :", dataForm);
+
 
 
   } else if (Randomizer.value === 2 || Randomizer.value === 6) {
