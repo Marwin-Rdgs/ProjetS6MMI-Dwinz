@@ -1,4 +1,4 @@
-<template>
+  <template>
     <div id="DwinzBg">
 
       <NuxtLayout />
@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js';
+import 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js'; 
 
 
 export default {
@@ -45,6 +45,7 @@ export default {
   position: absolute;
   z-index: -1;
   width: 100%;
+  // height: 100%;
 }
 
 </style>
