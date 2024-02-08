@@ -1,10 +1,17 @@
 <script setup>
 import { defineProps, reactive, ref, onMounted } from 'vue';
 // import { Chart } from 'chart.js/auto';
+import {supabase} from '../supabase.js'
 import { Radar } from 'vue-chartjs';
 import {Chart as ChartJS, Title, Tooltip, Legend, PointElement, LineElement, RadialLinearScale, Filler} from 'chart.js';
 
 ChartJS.register(Title, Tooltip, Legend, PointElement, LineElement, RadialLinearScale, Filler)
+
+const Like_Rap = ref();
+const Like_Latino = ref();
+const Like_Rock = ref();
+const Like_Pop = ref();
+const Like_Reggae = ref();
 
 const propChart = defineProps({
   chartId: {type: String, default:'radar-chart'},
@@ -15,31 +22,23 @@ const propChart = defineProps({
   styles: {type: Object, default: () => {}},
   plugins: {type: Object, default: () => {}},
 
-  data_Rock: {
-      type: String,
-    },
-    data_Rap: {
-      type: String,
-    },
-    data_Pop: {
-      type: String,
-    },
-    data_Reggae: {
-      type: String,
-    },
-    data_Latino: {
-      type: String,
-    }
+    data_Rock: Number,
+    data_Rap: String,
+    data_Pop: Number,
+    data_Reggae: Number,
+    data_Latino: Number,
 })
+
+// const rapRef = toRefs(propChart.data_Rap)
+// console.log("rapref =======" , rapRef)
 
 let chartData = reactive({
   labels:['Rap', 'Pop', 'Rock', 'Latino', 'Reggae'],
   datasets: [
       {
           label: "Votre Dwinz",
-          data: [propChart.data_Rap, propChart.data_Pop, propChart.data_Rock, propChart.data_Latino, propChart.data_Reggae],
+          data: [Like_Rap.value, propChart.data_Pop, propChart.data_Rock, propChart.data_Latino, propChart.data_Reggae],
           backgroundColor: ['pink'],
-          borderColor: [],
           borderWidth: 2
       }
   ]
@@ -83,12 +82,28 @@ let chartOptions = reactive({
 //       // Pas besoin d'utiliser renderChart ici lorsque vous étendez le composant Radar
 //     },
 //   };
+
+
+
+onBeforeMount(async() => {
+const { data:likeContent, error } = await supabase.from("LikesDwinz").select("Likes_Rap, Likes_Pop, Likes_Rock, Likes_Latino, Likes_Reggae").single();
+
+    console.log(likeContent)
+    Like_Rap.value = likeContent.Likes_Rap;
+    Like_Latino.value = likeContent.Likes_Latino;
+    Like_Rock.value = likeContent.Likes_Rock;
+    Like_Pop.value = likeContent.Likes_Pop;
+    Like_Reggae.value = likeContent.Likes_Reggae; 
+})
+
+console.log(propChart);
 </script>
 
 <template>
     <div>
       <!-- <chart :type="'radar'" :data="chartData"></chart> -->
       <!-- <canvas ref="RadarChart" :type="" width="400" height="400"></canvas> -->
+      {{ Like_Rap }}
       <Radar 
       :options="chartOptions"
       :data="chartData"

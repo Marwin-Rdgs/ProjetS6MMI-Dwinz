@@ -1,10 +1,10 @@
 <script setup>
 import { createClient } from '@supabase/supabase-js';
 import { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/SupabaseAuthClient';
-import {user} from '../supabase'
+import {user, supabase} from '../supabase'
 import RadarChart from '../../components/RadarChart.vue';
 // import RadarChart from '../../components/chartTest.vue'
-console.log(user)
+// console.log(user)
 // const router = useRouter();
 
 // export default {
@@ -23,20 +23,21 @@ console.log(user)
 //     const { data, error } = await supabase.auth.getSession()
 //     user.value = data.session.user
 // })
-const Likes_Rap = ref();
-const Likes_Latino = ref();
-const Likes_Rock = ref();
-const Likes_Pop = ref();
-const Likes_Reggae = ref();
+const Like_Rap = ref();
+const Like_Latino = ref();
+const Like_Rock = ref();
+const Like_Pop = ref();
+const Like_Reggae = ref();
 
-onMounted(async() => {
-const { data, error } = await supabase.from("LikesDwinz").select("*").single();
+onBeforeMount(async() => {
+const { data:likeContent, error } = await supabase.from("LikesDwinz").select("Likes_Rap, Likes_Pop, Likes_Rock, Likes_Latino, Likes_Reggae").single();
 
-    Likes_Rap.value = data.Likes_Rap;
-    Likes_Latino.value = data.Likes_Latino;
-    Likes_Rock.value = data.Likes_Rock;
-    Likes_Pop.value = data.Likes_Pop;
-    Likes_Reggae.value = data.Likes_Reggae; 
+    console.log(likeContent)
+    Like_Rap.value = likeContent.Likes_Rap;
+    Like_Latino.value = likeContent.Likes_Latino;
+    Like_Rock.value = likeContent.Likes_Rock;
+    Like_Pop.value = likeContent.Likes_Pop;
+    Like_Reggae.value = likeContent.Likes_Reggae; 
 })
 
 
@@ -57,14 +58,20 @@ const { data, error } = await supabase.from("LikesDwinz").select("*").single();
     <div class="profil__chart">
     <!-- ChartJS -->
         <h1>Votre Dwinz</h1>
+        {{ Like_Rap }}
+        {{ Like_Rock }}
+        {{ Like_Latino }}
+        {{ Like_Pop }}
+        {{ Like_Reggae }}
         <div class="profil__chart-content">
             <RadarChart 
-            :data_Rap="Likes_Rap"
-            :data_Rock="Likes_Rock"
-            :data_Latino="Likes_Latino"
-            :data_Pop="Likes_Pop"
-            :data_Reggae="Likes_Reggae"/>
+            :data_Rap="Like_Rap"
+            data_Rock="1"
+            data_Latino="2"
+            data_Pop="4"
+            data_Reggae="10"/>
         </div>
+        <h4>N'hésitez pas à partager votre <b>Dwinz</b> sur divers réseaux sociaux avec <b>#MyDwinz</b> !</h4>
     </div>    
 
 </template>
@@ -73,7 +80,7 @@ const { data, error } = await supabase.from("LikesDwinz").select("*").single();
 import {useRouter} from 'vue-router'
 const SUPABASE_URL = 'https://nmblwsaflcsvzrwfkybl.supabase.co'
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5tYmx3c2FmbGNzdnpyd2ZreWJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQyNDE0NDYsImV4cCI6MTk4OTgxNzQ0Nn0.kUNnwOb667kh1RG0YNFBMCDubpEjaE_2EyhAuPEtMhY'
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+// const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
 
 
@@ -132,5 +139,19 @@ export default {
         color: $d-white;
         font-family: $primary-font-family;
         font-size: 24px;
+    }
+
+    h4 {
+        color: $d-white;
+        font-family: $secondary-font-family;
+        font-size: 18px;
+        font-weight: normal;
+
+        text-align: center;
+        margin-top: 2%;
+
+        > b {
+            font-weight: bold;
+        }
     }
 </style>
